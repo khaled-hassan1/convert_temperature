@@ -1,20 +1,26 @@
 import 'dart:io';
 
+// Function to convert temperatures based on user input
 void convertTemperatures(List<String> choices) {
   try {
+    // Ask the user to input the temperature value
     stdout.write('Enter temperature value: ');
     double tempValue = double.parse(stdin.readLineSync()!);
 
+    // Display the available temperature conversion choices
     for (String choice in choices) {
       print(choice);
     }
 
+    // Ask the user to choose a temperature scale
     stdout.write('Choose temperature scale: ');
     int tempScale = int.parse(stdin.readLineSync()!);
 
+    // Variables to store the result and the chosen scale name
     double result;
     String scaleName;
 
+    // Perform the conversion based on the user's choice
     switch (tempScale) {
       case 1:
         result = celsiusToFahrenheit(tempValue);
@@ -45,8 +51,10 @@ void convertTemperatures(List<String> choices) {
         return;
     }
 
+    // Display the result to the user
     print('Result: ${result.toStringAsFixed(2)} $scaleName');
-  } catch (e) {
+  } catch (_) {
+    // Handle invalid input
     print('Error: Invalid input. Please enter a valid number.');
   }
 }
@@ -82,14 +90,16 @@ double kelvinToFahrenheit(double kelvin) {
 }
 
 void main(List<String> args) {
+  // List of temperature conversion choices
   List<String> choices = [
-    ' 1- celsius To Fahrenheit',
-    ' 2- celsius To Kelvin',
-    ' 3- kelvin To Celsius',
-    ' 4- fahrenheit To Kelvin',
-    ' 5- kelvin To Fahrenheit',
-    ' 6- fahrenheit To Celsius',
+    ' 1- Celsius to Fahrenheit',
+    ' 2- Celsius to Kelvin',
+    ' 3- Kelvin to Celsius',
+    ' 4- Fahrenheit to Kelvin',
+    ' 5- Kelvin to Fahrenheit',
+    ' 6- Fahrenheit to Celsius',
   ];
 
+  // Call the function to convert temperatures
   convertTemperatures(choices);
 }
